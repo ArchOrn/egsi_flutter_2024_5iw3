@@ -10,14 +10,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const CustomTheme(
-        child: Home(),
-      ),
+      home: const Home(),
       theme: ThemeData(
         textTheme: const TextTheme(
           displayLarge: TextStyle(
             color: Colors.amber,
-            fontSize: 42,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -31,37 +29,58 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+        elevation: 1,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.airplanemode_on,
+            color: Colors.white,
+          ),
+        ),
+        title: const Text(
+          'My Title',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
+      body: Center(
         child: Text(
           'Hello',
-          style: CustomTheme.of(context).textStyle1,
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Favorites',
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.blue,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: 'Today',
+            icon: Icon(
+              Icons.calendar_today,
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );
-  }
-}
-
-class CustomTheme extends InheritedWidget {
-  final TextStyle textStyle1 = const TextStyle(
-    color: Colors.blue,
-    fontSize: 25,
-  );
-
-  const CustomTheme({
-    super.key,
-    required super.child,
-  });
-
-  static CustomTheme of(BuildContext context) {
-    final CustomTheme? result = context.dependOnInheritedWidgetOfExactType<CustomTheme>();
-    assert(result != null, 'No CustomTheme found in context');
-    return result!;
-  }
-
-  @override
-  bool updateShouldNotify(CustomTheme old) {
-    return true;
   }
 }
