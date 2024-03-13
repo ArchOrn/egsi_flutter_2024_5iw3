@@ -10,7 +10,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Home(),
+      home: const CustomTheme(
+        child: Home(),
+      ),
       theme: ThemeData(
         textTheme: const TextTheme(
           displayLarge: TextStyle(
@@ -34,9 +36,32 @@ class Home extends StatelessWidget {
       child: Center(
         child: Text(
           'Hello',
-          style: Theme.of(context).textTheme.displayLarge,
+          style: CustomTheme.of(context).textStyle1,
         ),
       ),
     );
+  }
+}
+
+class CustomTheme extends InheritedWidget {
+  final TextStyle textStyle1 = const TextStyle(
+    color: Colors.blue,
+    fontSize: 25,
+  );
+
+  const CustomTheme({
+    super.key,
+    required super.child,
+  });
+
+  static CustomTheme of(BuildContext context) {
+    final CustomTheme? result = context.dependOnInheritedWidgetOfExactType<CustomTheme>();
+    assert(result != null, 'No CustomTheme found in context');
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(CustomTheme old) {
+    return true;
   }
 }
