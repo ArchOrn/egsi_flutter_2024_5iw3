@@ -10,7 +10,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Home(),
+      home: Home(),
       theme: ThemeData(
         textTheme: const TextTheme(
           displayLarge: TextStyle(
@@ -24,61 +24,34 @@ class App extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Home extends StatefulWidget {
+
+  Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  Color _color = Colors.red;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-        elevation: 1,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.airplanemode_on,
-            color: Colors.white,
-          ),
-        ),
-        title: const Text(
-          'My Title',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
       backgroundColor: Colors.white,
       body: Center(
-        child: Text(
-          'Hello',
-          style: Theme.of(context).textTheme.displayLarge,
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Favorites',
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.blue,
-            ),
+        child: GestureDetector(
+          onTap: () {
+            print('Toto');
+            setState(() {
+              _color = _color == Colors.red ? Colors.blue : Colors.red;
+            });
+          },
+          child: Container(
+            width: 50,
+            height: 50,
+            color: _color,
           ),
-          BottomNavigationBarItem(
-            label: 'Today',
-            icon: Icon(
-              Icons.calendar_today,
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        shape: const CircleBorder(),
-        onPressed: () {},
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
         ),
       ),
     );
