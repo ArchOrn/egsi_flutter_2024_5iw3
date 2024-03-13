@@ -9,26 +9,34 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const Center(
-        child: Square(color: Colors.black),
+    return MaterialApp(
+      home: const Home(),
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+            color: Colors.amber,
+            fontSize: 42,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
 }
 
-class Square extends StatelessWidget {
-  final Color color;
-
-  const Square({super.key, this.color = Colors.red});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
-      color: color,
+      color: Colors.white,
+      child: Center(
+        child: Text(
+          'Hello',
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
+      ),
     );
   }
 }
