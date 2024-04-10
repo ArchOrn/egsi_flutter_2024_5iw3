@@ -13,8 +13,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final _screens = [
-    const FavoritesScreen(),
-    const CalendarScreen(),
+    ScreenDef(
+      icon: Icons.favorite,
+      label: 'Favorites',
+      widget: const FavoritesScreen(),
+    ),
+    ScreenDef(
+      icon: Icons.calendar_today,
+      label: 'Today',
+      widget: const CalendarScreen(),
+    ),
+    ScreenDef(
+      icon: Icons.verified_user_sharp,
+      label: 'Toto',
+      widget: Container(
+        color: Colors.purple,
+      ),
+    ),
   ];
 
   int _currentIndex = 0;
@@ -41,7 +56,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: _screens[_currentIndex],
+      body: _screens[_currentIndex].widget,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.blue,
@@ -50,20 +65,12 @@ class _HomeState extends State<Home> {
             _currentIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Favorites',
-            icon: Icon(
-              Icons.favorite,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Today',
-            icon: Icon(
-              Icons.calendar_today,
-            ),
-          ),
-        ],
+        items: _screens.map((e) {
+          return BottomNavigationBarItem(
+            label: e.label,
+            icon: Icon(e.icon),
+          );
+        }).toList(),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
@@ -76,4 +83,12 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+class ScreenDef {
+  final IconData icon;
+  final String label;
+  final Widget widget;
+
+  ScreenDef({required this.icon, required this.label, required this.widget});
 }
