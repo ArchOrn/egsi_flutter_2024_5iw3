@@ -8,6 +8,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Color _backgroundColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +31,15 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
-      body: const Center(
-        child: Square(),
+      backgroundColor: _backgroundColor,
+      body: Center(
+        child: Square(
+          onTap: () {
+            setState(() {
+              _backgroundColor = _backgroundColor == Colors.white ? Colors.black : Colors.white;
+            });
+          },
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue,
@@ -64,14 +72,14 @@ class _HomeState extends State<Home> {
 }
 
 class Square extends StatelessWidget {
-  const Square({super.key});
+  final VoidCallback onTap;
+
+  const Square({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // TODO
-      },
+      onTap: onTap,
       child: Container(
         width: 50,
         height: 50,
