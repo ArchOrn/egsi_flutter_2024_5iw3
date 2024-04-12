@@ -9,23 +9,14 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                const RedSquare(),
-                ...List.generate(100, (index) {
-                  return const Column(
-                    children: [
-                      SizedBox(height: 10),
-                      RedSquare(),
-                    ],
-                  );
-                })
-              ],
-            ),
-          ),
+        body: ListView.separated(
+          itemBuilder: (context, index) {
+            return const RedSquare();
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: 10);
+          },
+          itemCount: 100000,
         ),
       ),
     );
