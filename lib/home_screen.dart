@@ -9,12 +9,14 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: ListView.separated(
+        body: ListView.builder(
           itemBuilder: (context, index) {
-            return const RedSquare();
-          },
-          separatorBuilder: (context, index) {
-            return const SizedBox(height: 10);
+            return ListTile(
+              title: Text('First Name $index Last Name $index'),
+              subtitle: Text('$index, rue du Faubourg St Antoine'),
+              leading: const Icon(Icons.person),
+              onTap: () {},
+            );
           },
           itemCount: 100000,
         ),
