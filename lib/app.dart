@@ -11,7 +11,17 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const HomeScreen(),
-        CalendarScreen.routeName: (context) => const CalendarScreen(),
+      },
+      onGenerateRoute: (settings) {
+        final args = settings.arguments;
+        switch (settings.name) {
+          case CalendarScreen.routeName:
+            return MaterialPageRoute(
+              builder: (context) {
+                return CalendarScreen(username: args as String);
+              },
+            );
+        }
       },
       theme: ThemeData(
         textTheme: const TextTheme(
