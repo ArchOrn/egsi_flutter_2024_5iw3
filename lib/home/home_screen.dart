@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: FutureBuilder(
-        future: ApiServices.getPosts(),
+        future: ApiServices.getUsers(),
         builder: (context, snapshot) {
           final loading = snapshot.connectionState == ConnectionState.waiting;
           if (loading) {
@@ -31,10 +31,11 @@ class HomeScreen extends StatelessWidget {
 
           return ListView.builder(
             itemBuilder: (context, index) {
-              final post = snapshot.data![index];
+              final user = snapshot.data![index];
               return ListTile(
-                title: Text(post.title),
-                subtitle: Text(post.body),
+                leading: const Icon(Icons.person),
+                title: Text(user.name),
+                subtitle: Text(user.address),
               );
             },
             itemCount: snapshot.hasData ? snapshot.data!.length : 0,
