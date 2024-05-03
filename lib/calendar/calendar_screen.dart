@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CalendarScreen extends StatelessWidget {
+  static String routeName = '/calendar';
+
   static Future<void> navigateTo(BuildContext context) {
-    return Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) {
-        return const CalendarScreen();
-      },
-    ));
+    return Navigator.of(context).pushNamed(routeName);
   }
 
   const CalendarScreen({super.key});
