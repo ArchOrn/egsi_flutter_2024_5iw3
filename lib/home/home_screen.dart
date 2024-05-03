@@ -22,13 +22,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return const CalendarScreen();
-                  },
-                ));
-              },
+              onPressed: () => CalendarScreen.navigateTo(context),
               child: const Text('Go!'),
             ),
           ],
