@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_5iw3/calendar/calendar_screen.dart';
 import 'package:flutter_5iw3/home/home_screen.dart';
 
 class App extends StatelessWidget {
@@ -11,17 +10,6 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const HomeScreen(),
-      },
-      onGenerateRoute: (settings) {
-        final args = settings.arguments;
-        switch (settings.name) {
-          case CalendarScreen.routeName:
-            return MaterialPageRoute(
-              builder: (context) {
-                return CalendarScreen(username: args as String);
-              },
-            );
-        }
       },
       theme: ThemeData(
         textTheme: const TextTheme(
