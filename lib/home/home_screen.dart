@@ -30,8 +30,13 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final product = state.products[index];
                   return ListTile(
+                    leading: Image.network(product.imageUrl),
                     title: Text(product.title),
-                    subtitle: Text(product.description),
+                    subtitle: Text(
+                      product.description,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   );
                 },
                 itemCount: state.products.length,
