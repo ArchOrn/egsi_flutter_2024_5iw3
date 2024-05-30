@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_5iw3/home/home_screen.dart';
+import 'package:flutter_5iw3/product/product_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,6 +11,13 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const HomeScreen(),
+      },
+      onGenerateRoute: (settings) {
+        final args = settings.arguments;
+        switch(settings.name) {
+          case ProductScreen.routeName:
+            return MaterialPageRoute(builder: (context) => ProductScreen(id: args as int));
+        }
       },
       theme: ThemeData(
         textTheme: const TextTheme(

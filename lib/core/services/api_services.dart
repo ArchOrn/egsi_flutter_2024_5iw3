@@ -21,4 +21,18 @@ class ApiServices {
       throw ApiException(message: 'Unknown error');
     }
   }
+
+  static Future<Product> getProduct({required int id}) async {
+    try {
+      final response = await http.get(Uri.parse('https://dummyjson.com/products/$id'));
+      final data = json.decode(response.body) as Map<String, dynamic>;
+      return Product.fromJson(data);
+    } on SocketException catch (error) {
+      log('Network error.', error: error);
+      throw ApiException(message: 'Network error');
+    } catch (error) {
+      log('An error occurred while fetching product with id $id.', error: error);
+      throw ApiException(message: 'Unknown error');
+    }
+  }
 }
