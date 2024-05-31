@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_5iw3/core/models/product.dart';
+import 'package:flutter_5iw3/cart/blocs/cart_bloc.dart';
 import 'package:flutter_5iw3/product/blocs/product_bloc.dart';
+import 'package:flutter_5iw3/shared/widgets/cart_floating_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -74,6 +75,13 @@ class ProductScreen extends StatelessWidget {
                                 Text(product.description),
                                 const SizedBox(height: 10),
                                 _buildRating(context, rating: product.rating),
+                                const SizedBox(height: 10),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context.read<CartBloc>().add(CartItemAdded(product: product));
+                                  },
+                                  child: const Text('Add to cart'),
+                                ),
                               ],
                             ),
                           )
@@ -82,6 +90,7 @@ class ProductScreen extends StatelessWidget {
                     )
                 ],
               ),
+              floatingActionButton: const CartFloatingButton(),
             ),
           );
         },
