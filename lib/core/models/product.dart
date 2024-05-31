@@ -25,4 +25,15 @@ class Product {
       rating: json['rating'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'price': price,
+      'rating': rating,
+      'imageUrl': imageUrl,
+    };
+  }
 }

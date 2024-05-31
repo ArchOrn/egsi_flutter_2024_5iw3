@@ -38,6 +38,7 @@ dependencies:
   http: ^1.2.1
   flinq: ^2.0.2
   flutter_bloc: ^8.1.5
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
